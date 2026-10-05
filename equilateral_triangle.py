@@ -1,0 +1,23 @@
+import turtle
+import graphicssystem as gs
+
+turtle.setup(720, 576)
+turtle.setworldcoordinates(-2, -2, 3, 2)
+A = gs.Point(0, 0)
+A.plot(label="A")
+c1 = gs.Circle(A, 1)
+c1.plot()
+B = gs.Point(1, 0)
+B.plot(label="B")
+c2 = gs.Circle(B, 1)
+c2.plot()
+s1 = gs.Seg(A, B)
+s1.plot()
+p1, p2 = c1.intersection(c2)
+C = gs.Point(p2.x, p2.y)
+C.plot(label="C")
+s2 = gs.Seg(A, C)
+s2.plot()
+s3 = gs.Seg(B, C)
+s3.plot()
+turtle.done()
