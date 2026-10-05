@@ -93,7 +93,7 @@ class Circle(sp.Circle):
         self.t.hideturtle()
         self.t.penup()
 
-    def plot(self, steps=100, speed=turtle.Turtle().__dict__["_speed"]):
+    def plot(self, steps=100, speed=turtle.Turtle().__dict__["_speed"], c="black"):
         self.t.clear()
         cx = float(self.center.x)
         cy = float(self.center.y)
@@ -102,6 +102,7 @@ class Circle(sp.Circle):
         self.t.setheading(0)
         self.t.pendown()
         self.t.speed(speed)
+        self.t.pencolor(c)
         self.t.circle(r, steps=steps)
         self.t.penup()
         self.t.speed(turtle.Turtle().__dict__["_speed"])
