@@ -1,8 +1,9 @@
 import turtle
+import math
 import graphicssystem as gs
 
-turtle.setup(720, 720)
-turtle.setworldcoordinates(-5, -5, 5, 5)
+turtle.setup(720, 556)
+turtle.setworldcoordinates(-4, -(4+math.sqrt(10-2*math.sqrt(5)))/2, 4, 3)
 O = gs.Point(0, 0)
 O.plot(label="O")
 c1 = gs.Circle(O, 1)
@@ -59,4 +60,14 @@ c8.plot(speed=0)
 p1, p2 = c8.intersection(c1)
 H = gs.Point(p2.x, p2.y)
 H.plot(label="H")
+s4 = gs.Seg(C, P)
+s4.plot(c="red")
+s5 = gs.Seg(P, N)
+s5.plot(c="red")
+s6 = gs.Seg(N, H)
+s6.plot(c="red")
+s7 = gs.Seg(H, M)
+s7.plot(c="red")
+s8 = gs.Seg(M, C)
+s8.plot(c="red")
 turtle.done()
