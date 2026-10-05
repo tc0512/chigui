@@ -29,10 +29,11 @@ class Seg(sp.Segment2D):
         self.t.hideturtle()
         self.t.penup()
 
-    def plot(self):
+    def plot(self, c="black"):
         self.t.clear()
         self.t.goto(float(self.p1.x), float(self.p1.y))
         self.t.pendown()
+        self.t.pencolor(c)
         self.t.goto(float(self.p2.x), float(self.p2.y))
         self.t.penup()
 
