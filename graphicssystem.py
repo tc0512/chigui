@@ -45,7 +45,7 @@ class Ray(sp.Ray2D):
         self.t.hideturtle()
         self.t.penup()
 
-    def plot(self):
+    def plot(self, length=1000):
         self.t.clear()
         x0 = float(self.source.x)
         y0 = float(self.source.y)
@@ -55,7 +55,32 @@ class Ray(sp.Ray2D):
         self.t.goto(x0, y0)
         self.t.setheading(angle)
         self.t.pendown()
-        self.t.forward(100)
+        self.t.forward(length)
+        self.t.penup()
+
+    def delete(self):
+        self.t.clear()
+
+class Line(sp.Line2D):
+    def __init__(self, *args, **kwargs):
+        self.t = turtle.Turtle()
+        self.t.hideturtle()
+        self.t.penup()
+
+    def plot(self, L=1000):
+        self.t.clear()
+        p1 = self.p1
+        p2 = self.p2
+        x1, y1 = float(p1.x), float(p1.y)
+        x2, y2 = float(p2.x), float(p2.y)
+        dx = x2-x1
+        dy = y2-y1
+        norm = math.hypot(dx, dy)
+        dx /= norm
+        dy /= norm
+        self.t.goto(x1-dx*L, y1-dy*L)
+        self.t.pendown()
+        self.t.goto(x2+dx*L, y2+dy*L)
         self.t.penup()
 
     def delete(self):
@@ -64,8 +89,7 @@ class Ray(sp.Ray2D):
 # ---------- Tests ---------- #
 turtle.setup(720, 720)
 turtle.setworldcoordinates(-10, -10, 10, 10)
-s1 = Seg(Point(2, 3), Point(0, 0))
-s2 = Seg(Point(0, 0), Point(1, 1))
-s1.plot()
-s2.plot()
+l = Line(Point(2, 3), Point(0, 0))
+l.plot(L=50)
+print("Done")
 turtle.done()
