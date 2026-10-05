@@ -41,5 +41,5 @@ c5 = gs.Circle(E, C.distance(E))
 c5.plot(speed=0)
 p = c5.intersection(s1)[0]
 F = gs.Point(p.x, p.y) # F((√5-1)/2,0)
-F.plot(label="F")
+F.plot(label="F", c="gold")
 turtle.done()
