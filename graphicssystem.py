@@ -86,10 +86,22 @@ class Line(sp.Line2D):
     def delete(self):
         self.t.clear()
 
-# ---------- Tests ---------- #
-turtle.setup(720, 720)
-turtle.setworldcoordinates(-10, -10, 10, 10)
-l = Line(Point(2, 3), Point(0, 0))
-l.plot(L=50)
-print("Done")
-turtle.done()
+class Circle(sp.Circle):
+    def __init__(self, *args, **kwargs):
+        self.t = turtle.Turtle()
+        self.t.hideturtle()
+        self.t.penup()
+
+    def plot(self, steps=100):
+        self.t.clear()
+        cx = float(self.center.x)
+        cy = float(self.center.y)
+        r = float(self.radius)
+        self.t.goto(cx, cy - r)
+        self.t.setheading(0)
+        self.t.pendown()
+        self.t.circle(r, steps=steps)
+        self.t.penup()
+
+    def delete(self):
+        self.t.clear()
