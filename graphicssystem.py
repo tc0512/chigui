@@ -14,9 +14,10 @@ class Point(sp.Point2D):
         self.t.hideturtle()
         self.t.penup()
 
-    def plot(self, label=""):
+    def plot(self, label="", c="black"):
         self.t.clear()
         self.t.goto(float(self.x), float(self.y))
+        self.t.pencolor(c)
         self.t.dot(5)
         self.t.write(label)
 
