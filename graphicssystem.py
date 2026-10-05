@@ -93,7 +93,7 @@ class Circle(sp.Circle):
         self.t.hideturtle()
         self.t.penup()
 
-    def plot(self, steps=100):
+    def plot(self, steps=100, speed=0):
         self.t.clear()
         cx = float(self.center.x)
         cy = float(self.center.y)
@@ -101,8 +101,10 @@ class Circle(sp.Circle):
         self.t.goto(cx, cy - r)
         self.t.setheading(0)
         self.t.pendown()
+        self.t.speed(speed)
         self.t.circle(r, steps=steps)
         self.t.penup()
+        self.t.speed(turtle.Turtle().__dict__["_speed"])
 
     def delete(self):
         self.t.clear()
