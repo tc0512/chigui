@@ -11,11 +11,13 @@ screen = turtle.Screen()
 class Point(sp.Point2D):
     def __init__(self, *args, **kwargs):
         self.t = turtle.Turtle()
+        self.t.setundobuffer(None)
         self.t.hideturtle()
         self.t.penup()
 
-    def plot(self, label="", c="black"):
+    def plot(self, speed=3, label="", c="black"):
         self.t.clear()
+        self.t.speed(speed)
         self.t.goto(float(self.x), float(self.y))
         self.t.pencolor(c)
         self.t.dot(5)
@@ -27,15 +29,18 @@ class Point(sp.Point2D):
 class Seg(sp.Segment2D):
     def __init__(self, *args, **kwargs):
         self.t = turtle.Turtle()
+        self.t.setundobuffer(None)
         self.t.hideturtle()
         self.t.penup()
 
-    def plot(self, c="black"):
+    def plot(self, speed=3, label="", c="black"):
         self.t.clear()
+        self.t.speed(speed)
         self.t.goto(float(self.p1.x), float(self.p1.y))
         self.t.pendown()
         self.t.pencolor(c)
         self.t.goto(float(self.p2.x), float(self.p2.y))
+        self.t.write(label)
         self.t.penup()
 
     def delete(self):
@@ -44,20 +49,24 @@ class Seg(sp.Segment2D):
 class Ray(sp.Ray2D):
     def __init__(self, *args, **kwargs):
         self.t = turtle.Turtle()
+        self.t.setundobuffer(None)
         self.t.hideturtle()
         self.t.penup()
 
-    def plot(self, length=1000):
+    def plot(self, speed=3, L=1000, label="", c="black"):
         self.t.clear()
         x0 = float(self.source.x)
         y0 = float(self.source.y)
         dx = float(self.direction.x)
         dy = float(self.direction.y)
         angle = math.degrees(math.atan2(dy, dx))
+        self.t.speed(speed)
         self.t.goto(x0, y0)
+        self.t.pencolor(c)
+        self.t.write(label)
         self.t.setheading(angle)
         self.t.pendown()
-        self.t.forward(length)
+        self.t.forward(L)
         self.t.penup()
 
     def delete(self):
@@ -66,10 +75,11 @@ class Ray(sp.Ray2D):
 class Line(sp.Line2D):
     def __init__(self, *args, **kwargs):
         self.t = turtle.Turtle()
+        self.t.setundobuffer(None)
         self.t.hideturtle()
         self.t.penup()
 
-    def plot(self, L=1000):
+    def plot(self, speed=3, L=1000, label="", c="black"):
         self.t.clear()
         p1 = self.p1
         p2 = self.p2
@@ -80,6 +90,10 @@ class Line(sp.Line2D):
         norm = math.hypot(dx, dy)
         dx /= norm
         dy /= norm
+        self.t.speed(speed)
+        self.t.pencolor(c)
+        self.t.goto(x1, y1)
+        self.t.write(label)
         self.t.goto(x1-dx*L, y1-dy*L)
         self.t.pendown()
         self.t.goto(x2+dx*L, y2+dy*L)
@@ -91,10 +105,11 @@ class Line(sp.Line2D):
 class Circle(sp.Circle):
     def __init__(self, *args, **kwargs):
         self.t = turtle.Turtle()
+        self.t.setundobuffer(None)
         self.t.hideturtle()
         self.t.penup()
 
-    def plot(self, steps=100, speed=turtle.Turtle().__dict__["_speed"], c="black"):
+    def plot(self, steps=100, speed=3, label="", c="black"):
         self.t.clear()
         cx = float(self.center.x)
         cy = float(self.center.y)
@@ -104,9 +119,10 @@ class Circle(sp.Circle):
         self.t.pendown()
         self.t.speed(speed)
         self.t.pencolor(c)
+        self.t.write(label)
         self.t.circle(r, steps=steps)
         self.t.penup()
-        self.t.speed(turtle.Turtle().__dict__["_speed"])
+        self.t.speed(3)
 
     def delete(self):
         self.t.clear()
