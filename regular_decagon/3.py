@@ -1,0 +1,36 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import turtle
+import graphicssystem as gs
+
+turtle.setup(720, 720)
+turtle.setworldcoordinates(-4, -4, 4, 4)
+A = gs.Point(0, 0)
+A.plot(label="A")
+c1 = gs.Circle(A, 1)
+c1.plot(speed=0)
+B = gs.Point(-1, 0)
+C = gs.Point(1, 0)
+s1 = gs.Seg(B, C)
+s1.plot()
+B.plot(label="B")
+C.plot(label="C")
+c2 = gs.Circle(C, A.distance(C))
+c2.plot(speed=0)
+p1, p2 = c1.intersection(c2)
+D = gs.Point(p2.x, p2.y)
+D.plot(label="D")
+c3 = gs.Circle(D, A.distance(D))
+c3.plot(speed=0)
+p1, p2 = c3.intersection(c1)
+E = gs.Point(p2.x, p2.y)
+E.plot(label="E")
+r1 = gs.Ray(A, D)
+p1, p2 = r1.intersection(c3)
+F = gs.Point(p2.x, p2.y)
+s2 = gs.Seg(A, F)
+s2.plot()
+F.plot(label="F")
+turtle.done()
