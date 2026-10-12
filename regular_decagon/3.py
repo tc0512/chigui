@@ -4,9 +4,10 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import turtle
 import graphicssystem as gs
+import math
 
 turtle.setup(720, 720)
-turtle.setworldcoordinates(-4, -4, 4, 4)
+turtle.setworldcoordinates(-math.sqrt(2)+math.sqrt(3)/2, math.sqrt(2)*(-math.sqrt(math.sqrt(5)+5)-2*math.sqrt(3-math.sqrt(5)))/4, 1+math.sqrt(10-2*math.sqrt(5))/2, math.sqrt(3)/2+math.sqrt(2))
 A = gs.Point(0, 0)
 A.plot(label="A")
 c1 = gs.Circle(A, 1)
