@@ -55,7 +55,6 @@ p1, p2 = c7.intersection(c1)
 M, N = gs.Point(p1.x, p1.y), gs.Point(p2.x, p2.y)
 M.plot(label="M")
 N.plot(label="N")
-#BILEHJCNGFKM
 points = [B, I, L, E, H, J, C, N, G, F, K, M, B]
 for i in range(12):
     gs.Seg(points[i], points[i+1]).plot(c="red")
